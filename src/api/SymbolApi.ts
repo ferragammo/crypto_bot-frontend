@@ -1,10 +1,10 @@
 import api from ".";
-import { ISymbol } from "../types/SymbolType";
+//import { ISymbol } from "../types/SymbolType";
 import { AxiosError } from "axios";
 
-export const getSymbolData = async (symbolName: string): Promise<ISymbol | null> => {
+export const getSymbolData = async (symbolName: string): Promise<string | null> => {
   try {
-    const response = await api.get<ISymbol>(`/data/stock/${symbolName}`);
+    const response = await api.post<string>(`/data/stock/${symbolName}`);
     return response.data;
    } catch (error) {
         const axiosError = error as AxiosError;
