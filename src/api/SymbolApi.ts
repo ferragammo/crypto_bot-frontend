@@ -1,20 +1,28 @@
+import { format } from 'date-fns';
 import api from ".";
-//import { ISymbol } from "../types/SymbolType";
 import { AxiosError } from "axios";
 
-export const getSymbolData = async (symbolName: string): Promise<string | null> => {
+export const getSymbolData = async (
+  symbolName: string,
+  selectedDate: Date | null
+): Promise<string | null> => {
   try {
-    const response = await api.post<string>(`/data/stock/${symbolName}`);
-    return response.data;
-   } catch (error) {
-        const axiosError = error as AxiosError;
-    
-        if (axiosError.response && axiosError.response.status === 500) {
-          console.error(`Symbol "${symbolName}" not found.`, axiosError.response.data);
+      const baseUrl = `/data/stock/${symbolName}`;
+      const url = selectedDate
+          ? `${baseUrl}?referenceDate=${format(selectedDate, 'yyyy-MM-dd')}`
+          : baseUrl;
+
+      const response = await api.post<string>(url);
+      return response.data;
+  } catch (error) {
+      const axiosError = error as AxiosError;
+
+      if (axiosError.response && axiosError.response.status === 500) {
+          console.error(`Error with URL`, axiosError.response.data);
           return null;
-        } else {
+      } else {
           console.error("Request failed:", axiosError.message);
           return null;
-        }
       }
-    };
+  }
+};
