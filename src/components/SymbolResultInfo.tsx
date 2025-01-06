@@ -61,14 +61,14 @@ const SymbolResultInfo: FC<SymbolResultInfoProps> = ({ text }) => {
                 <ReactMarkdown>
                     {text}</ReactMarkdown>
                 </div>
-                <div className='mt-6 pt-6 border-t border-gray-100'>
+                {/* <div className='mt-6 pt-6 border-t border-gray-100'>
                     <p className='text-sm text-gray-600'>
                         <span className='font-medium'>Analysis Summary:</span>{' '}
                         Price action shows significant weakness with consistent
                         VWAP and 9 EMA rejection. Confluence required for
                         further analysis.
                     </p>
-                </div>
+                </div> */}
             </div>
             <div className='bg-white rounded-lg shadow-sm p-6 mt-0'>
                 <div className='flex items-center space-x-2 mb-6'>
