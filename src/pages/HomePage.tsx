@@ -74,11 +74,12 @@ const HomePage: FC = () => {
    }, [selectedDate]);
 
    return (
-      <div className="bg-gray-100 h-full min-h-screen">
-         <header className="flex py-5 px-8 shadow-sm bg-white ">
+      <div className="bg-gray-100 h-full min-h-screen w-full">
+         <header className="flex py-5 px-8 shadow-sm bg-white w-full justify-between">
             <span className="text-2xl text-gray-900 font-bold mr-28">
                Dashboard
             </span>
+            <div className="flex space-x-2">
             <div className="relative w-96 mr-8">
                <input
                   value={symbolName}
@@ -140,6 +141,7 @@ const HomePage: FC = () => {
                      />
                   </svg>
                </button>
+            </div>
             </div>
          </header>
          <main className="px-4 sm:px-6 lg:px-8 py-8">
