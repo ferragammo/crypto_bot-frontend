@@ -5,9 +5,10 @@ import SymbolResultInfo from "../components/SymbolResultInfo";
 import Loading from "../components/Loading";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ISymbol } from "../types/SymbolType";
 
 const HomePage: FC = () => {
-   const [symbolData, setSymbolData] = useState<string | null>(null);
+   const [symbolData, setSymbolData] = useState<ISymbol | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [errorMessage, setErrorMessage] = useState<string | null>(null);
    const [symbolName, setSymbolName] = useState<string>("");
@@ -33,6 +34,8 @@ const HomePage: FC = () => {
 
    const fetchSymbolData = async () => {
       setIsLoading(true);
+      setSymbolData(null);
+   setErrorMessage(null);
 
       try {
          const isoDate = selectedDate ? toLocalISOString(selectedDate) : null;
@@ -41,7 +44,7 @@ const HomePage: FC = () => {
 
          const data = await getSymbolData(symbolName, encodedDate);
          if (data) {
-            setSymbolData(data);
+            setSymbolData(data.data);
             setErrorMessage(null);
          } else {
             setErrorMessage(`Symbol "${symbolName}" not found.`);
@@ -157,7 +160,7 @@ const HomePage: FC = () => {
             {errorMessage ? (
                <p className="text-red-500">{errorMessage}</p>
             ) : symbolData ? (
-               <SymbolResultInfo text={symbolData} />
+               <SymbolResultInfo symbolData={symbolData}/>
             ) : isLoading ? (
                <Loading />
             ) : (
