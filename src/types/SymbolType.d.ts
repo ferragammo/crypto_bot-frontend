@@ -8,8 +8,13 @@
 // }
 
 export interface ISymbol {
-    aiResponse: string;
-    preMarketConditions: IPreMarketConditions;
+   aiResponse: string;
+   preMarketConditions: IPreMarketConditions;
+}
+
+export interface ITickerInfo {
+   referenceDate: string;
+   conclusion: string;
 }
 
 export interface IPreMarketConditions {
@@ -28,12 +33,15 @@ export interface IPreMarketConditions {
    summary: string;
 }
 
-
-
 export interface ISymbolResponse {
    data: ISymbol;
-   successful: true;
+   successful: boolean;
    error: {
       message: string;
    };
+}
+
+export interface ITickerInfoResponse {
+   data: { tickerInfo: ITickerInfo[] } | null;
+   successful: boolean;
 }

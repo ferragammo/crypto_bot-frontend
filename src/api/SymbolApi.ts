@@ -1,4 +1,3 @@
-// import { format } from 'date-fns';
 import api from ".";
 import { AxiosError } from "axios";
 import { ISymbolResponse } from "../types/SymbolType";
