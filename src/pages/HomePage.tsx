@@ -71,7 +71,7 @@ const HomePage: FC = () => {
    useEffect(() => {
       if (wsResponse?.successful) {
          if (wsResponse.data) {
-            setLiveMarketData(wsResponse.data.tickerInfo.reverse());
+            setLiveMarketData(wsResponse.data.tickerInfo);
             setIsLoading(false);
          }
       }
@@ -119,7 +119,7 @@ const HomePage: FC = () => {
    return (
       <div className="bg-gray-100 h-full min-h-screen w-full">
          <header className="flex py-5 px-8 shadow-sm bg-white w-full ">
-            <span className="text-2xl text-gray-900 font-bold mr-28">
+            <span className="text-2xl text-gray-900 font-bold mr-28 min-w-36">
                {isLiveMarket ? "Live Market" : "Dashboard"}
             </span>
             <div className="flex space-x-3">
@@ -133,8 +133,8 @@ const HomePage: FC = () => {
                      className="outline-none w-full pl-4 pr-12 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                   />
                </div>
-               {!isLiveMarket && (
-                  <div className="flex border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-500">
+
+                  <div className={`flex border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-500 ${isLiveMarket ? 'invisible' : ''}`}>
                      <DatePicker
                         selected={selectedDate}
                         onChange={(date: Date | null) => setSelectedDate(date)}
@@ -167,7 +167,7 @@ const HomePage: FC = () => {
                         </svg>
                      </button>
                   </div>
-               )}
+   
                <button
                   onClick={searchSymbolHandler}
                   className=" text-gray-400 px-3 hover:text-indigo-600 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-500"
