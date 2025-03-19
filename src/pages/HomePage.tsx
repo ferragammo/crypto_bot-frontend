@@ -197,7 +197,7 @@ const HomePage: FC = () => {
                            : "text-gray-400 border-gray-300 hover:text-indigo-600 hover:border-indigo-500"
                      } px-3 rounded-l-lg border h-full`}
                   >
-                     TSLA
+                     Historical
                   </button>
                   <button
                      onClick={() => setIsLiveMarket(true)}
