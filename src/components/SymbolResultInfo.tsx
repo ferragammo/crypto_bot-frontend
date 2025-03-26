@@ -26,8 +26,8 @@ const SymbolResultInfo: FC<SymbolResultInfoProps> = ({
                <PreMarketConditionsBlock
                   data={symbolData.preMarketConditions}
                />
-               <CurrentScenarioBlock />
-               <ConfluenceBlock />
+               <CurrentScenarioBlock data={symbolData.currentScenarios} />
+               <ConfluenceBlock confluences={symbolData.confluence} />
             </>
          )}
          {liveMarketData && <LiveCommentaryBlock data={liveMarketData} />}

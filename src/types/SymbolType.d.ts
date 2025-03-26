@@ -1,15 +1,8 @@
-// export interface ISymbolData {
-//    timestamp: string;
-//    open: number;
-//    high: number;
-//    low: number;
-//    close: number;
-//    volume: number;
-// }
-
 export interface ISymbol {
    aiResponse: string;
    preMarketConditions: IPreMarketConditions;
+   currentScenarios: ICurrentScenario[];
+   confluence: IConfluence;
 }
 
 export interface ITickerInfo {
@@ -31,6 +24,24 @@ export interface IPreMarketConditions {
       label: number;
    };
    summary: string;
+}
+
+export interface ICurrentScenario {
+   timeOpen: string;
+   price: number;
+   emaStatus: number;
+   vwapStatus: number;
+   vwapExtension: number;
+   emaTouch: boolean;
+   emaCrossing: boolean;
+   expansionTo9EMA: number;
+   candlePattern: string;
+}
+
+export interface IConfluence {
+   pullBack: boolean;
+   emaTouch: boolean;
+   pmlBNB: boolean;
 }
 
 export interface ISymbolResponse {

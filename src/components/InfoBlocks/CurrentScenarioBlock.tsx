@@ -1,6 +1,12 @@
 import { FC } from "react";
+import { ICurrentScenario } from "../../types/SymbolType";
+import ScenarioLine from "./Helpers/ScenarioLine";
 
-const CurrentScenarioBlock: FC = () => {
+interface CurrentScenarioBlockProps {
+   data: ICurrentScenario[];
+}
+
+const CurrentScenarioBlock: FC<CurrentScenarioBlockProps> = ({ data }) => {
    return (
       <div className="bg-white rounded-lg shadow-sm p-6">
          <div className="flex items-center space-x-2 mb-6">
@@ -58,100 +64,9 @@ const CurrentScenarioBlock: FC = () => {
                   </tr>
                </thead>
                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-gray-50 text-gray-700">
-                           09:45:00
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-gray-50 text-gray-700">
-                           $156.78
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-red-50 text-red-700">
-                           Below
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-red-50 text-red-700">
-                           Below
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-yellow-50 text-yellow-700">
-                           $1.72
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-green-50 text-green-700">
-                           Yes
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-red-50 text-red-700">
-                           No
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-yellow-50 text-yellow-700">
-                           0.5%
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-gray-50 text-gray-700">
-                           Doji
-                        </span>
-                     </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-gray-50 text-gray-700">
-                           10:00:00
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-gray-50 text-gray-700">
-                           $157.23
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-red-50 text-red-700">
-                           Below
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-red-50 text-red-700">
-                           Below
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-yellow-50 text-yellow-700">
-                           $1.45
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-red-50 text-red-700">
-                           No
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-red-50 text-red-700">
-                           No
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-yellow-50 text-yellow-700">
-                           0.3%
-                        </span>
-                     </td>
-                     <td className="px-4 py-2 whitespace-nowrap">
-                        <span className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-gray-50 text-gray-700">
-                           Hammer
-                        </span>
-                     </td>
-                  </tr>
+                  {data.map((scenario, index) => (
+                     <ScenarioLine key={index} scenario={scenario} />
+                  ))}
                </tbody>
             </table>
          </div>
